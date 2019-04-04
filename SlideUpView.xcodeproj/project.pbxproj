@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04777B48225151CF000D8E51 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04777B47225151CF000D8E51 /* TestView.swift */; };
-		04777B4A225151DA000D8E51 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04777B49225151DA000D8E51 /* TestView.xib */; };
 		04777B4C2253501D000D8E51 /* UIView+LoadFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04777B4B2253501D000D8E51 /* UIView+LoadFromNib.swift */; };
 		04AA3764224BFEDE00FEF6FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA3763224BFEDE00FEF6FD /* AppDelegate.swift */; };
 		04AA3766224BFEDE00FEF6FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA3765224BFEDE00FEF6FD /* ViewController.swift */; };
@@ -19,11 +17,10 @@
 		04AA377D224BFFFA00FEF6FD /* SlideUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AA377C224BFFFA00FEF6FD /* SlideUpView.xib */; };
 		04AA377F224C000C00FEF6FD /* SlideUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA377E224C000C00FEF6FD /* SlideUpView.swift */; };
 		04AE3D91224D1FAF00E68805 /* UIView+RoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE3D90224D1FAF00E68805 /* UIView+RoundCorners.swift */; };
+		04EED1C22253A12800850336 /* UIRectCorner+CornerMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EED1C12253A12800850336 /* UIRectCorner+CornerMask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04777B47225151CF000D8E51 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
-		04777B49225151DA000D8E51 /* TestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		04777B4B2253501D000D8E51 /* UIView+LoadFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LoadFromNib.swift"; sourceTree = "<group>"; };
 		04AA3760224BFEDE00FEF6FD /* SlideUpView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideUpView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04AA3763224BFEDE00FEF6FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +33,7 @@
 		04AA377C224BFFFA00FEF6FD /* SlideUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideUpView.xib; sourceTree = "<group>"; };
 		04AA377E224C000C00FEF6FD /* SlideUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideUpView.swift; sourceTree = "<group>"; };
 		04AE3D90224D1FAF00E68805 /* UIView+RoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundCorners.swift"; sourceTree = "<group>"; };
+		04EED1C12253A12800850336 /* UIRectCorner+CornerMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRectCorner+CornerMask.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,20 +67,35 @@
 			isa = PBXGroup;
 			children = (
 				04AA3763224BFEDE00FEF6FD /* AppDelegate.swift */,
+				04EED1C02253A01600850336 /* Extensions */,
+				04EED1BF2253A00400850336 /* SlideUpView */,
 				04AA3765224BFEDE00FEF6FD /* ViewController.swift */,
-				04AA377C224BFFFA00FEF6FD /* SlideUpView.xib */,
-				04AA377E224C000C00FEF6FD /* SlideUpView.swift */,
-				04AE3D90224D1FAF00E68805 /* UIView+RoundCorners.swift */,
-				04777B4B2253501D000D8E51 /* UIView+LoadFromNib.swift */,
 				04AA376D224BFEDF00FEF6FD /* Assets.xcassets */,
 				04AA3767224BFEDE00FEF6FD /* Main.storyboard */,
 				04AA376F224BFEDF00FEF6FD /* LaunchScreen.storyboard */,
 				04AA3772224BFEDF00FEF6FD /* Info.plist */,
 				04AA376A224BFEDE00FEF6FD /* SlideUpView.xcdatamodeld */,
-				04777B49225151DA000D8E51 /* TestView.xib */,
-				04777B47225151CF000D8E51 /* TestView.swift */,
 			);
 			path = SlideUpView;
+			sourceTree = "<group>";
+		};
+		04EED1BF2253A00400850336 /* SlideUpView */ = {
+			isa = PBXGroup;
+			children = (
+				04AA377C224BFFFA00FEF6FD /* SlideUpView.xib */,
+				04AA377E224C000C00FEF6FD /* SlideUpView.swift */,
+			);
+			path = SlideUpView;
+			sourceTree = "<group>";
+		};
+		04EED1C02253A01600850336 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04AE3D90224D1FAF00E68805 /* UIView+RoundCorners.swift */,
+				04777B4B2253501D000D8E51 /* UIView+LoadFromNib.swift */,
+				04EED1C12253A12800850336 /* UIRectCorner+CornerMask.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,7 +159,6 @@
 				04AA3771224BFEDF00FEF6FD /* LaunchScreen.storyboard in Resources */,
 				04AA377D224BFFFA00FEF6FD /* SlideUpView.xib in Resources */,
 				04AA376E224BFEDF00FEF6FD /* Assets.xcassets in Resources */,
-				04777B4A225151DA000D8E51 /* TestView.xib in Resources */,
 				04AA3769224BFEDE00FEF6FD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,11 +170,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04777B48225151CF000D8E51 /* TestView.swift in Sources */,
 				04AA376C224BFEDE00FEF6FD /* SlideUpView.xcdatamodeld in Sources */,
 				04AA377F224C000C00FEF6FD /* SlideUpView.swift in Sources */,
 				04AE3D91224D1FAF00E68805 /* UIView+RoundCorners.swift in Sources */,
 				04AA3766224BFEDE00FEF6FD /* ViewController.swift in Sources */,
+				04EED1C22253A12800850336 /* UIRectCorner+CornerMask.swift in Sources */,
 				04AA3764224BFEDE00FEF6FD /* AppDelegate.swift in Sources */,
 				04777B4C2253501D000D8E51 /* UIView+LoadFromNib.swift in Sources */,
 			);

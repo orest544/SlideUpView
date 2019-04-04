@@ -31,7 +31,6 @@ final class SlideUpView: UIView, NibLoadable {
     
     // MARK: - IBOutlets
     
-    //@IBOutlet private var contentView: UIView!
     @IBOutlet private weak var handleArea: UIView!
     
     // MARK: - Client interface
@@ -44,19 +43,17 @@ final class SlideUpView: UIView, NibLoadable {
     var notHidenAreaHeight: CGFloat = 60
     
     /// Can be changed (for example: [.bottomLeft, .bottomRight])
-    var roundedCorners: UIRectCorner = [.topLeft, .topRight]
+    var roundedCorners: UIRectCorner = [.topRight]
     var cornerRadius: CGFloat = 60
     
     var animationDuration: TimeInterval = 0.6
     
-    // MARK: - Private staff
+    // MARK: - Private stuff
     
     private var slideUpViewHeight: CGFloat!
     private var slideUpViewHeightConstraint: NSLayoutConstraint!
     
     private var runningAnimation: UIViewPropertyAnimator?
-    
-    // TODO: Change to enum state
     private var isCardVisible = false
     
     private var collapsingCondition: Bool {
@@ -122,7 +119,8 @@ final class SlideUpView: UIView, NibLoadable {
         
         layer.cornerRadius = cornerRadius
         if #available(iOS 11.0, *) {
-            layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            
+            layer.maskedCorners = roundedCorners.maskCorners.
         } else {
             roundCorners(corners: roundedCorners, radius: cornerRadius)
         }

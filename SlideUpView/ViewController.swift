@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var testView: UIView!
-    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var testViewTrailingConstraint: NSLayoutConstraint!
 
     var slideUpView: SlideUpView!
 
@@ -18,35 +18,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupSlideUpView()
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//        setupSlideUpView()
-//    }
 
     private func setupSlideUpView() {
         testView.translatesAutoresizingMaskIntoConstraints = false
         slideUpView = SlideUpView.loadFromNib(owner: self)
+    
         //testView.addSubview(slideUpView)
-        view.addSubview(slideUpView)
+        testView.addSubview(slideUpView)
         slideUpView.configure(screenCoveringPercentage: 70)
         slideUpView.attachMeToThe(position: .bottom)
-    }
-    
-    private func addTestView() {
-        let testView = Bundle.main.loadNibNamed("TestView", owner: self, options: nil)?.first as! UIView
-        //testView.backgroundColor = .red
-        testView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(testView)
-        
-        NSLayoutConstraint.activate([
-            testView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            testView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            testView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            testView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
-        ])
     }
 
 }
@@ -54,9 +34,6 @@ class ViewController: UIViewController {
 extension ViewController {
     @IBAction func testButton(_ sender: UIButton) {
         print("Test tapped")
-        trailingConstraint.constant = 60
-        testView.layoutIfNeeded()
-        slideUpView.layoutIfNeeded()
-        slideUpView.updateConstraints()
+        testViewTrailingConstraint.constant = 60
     }
 }
