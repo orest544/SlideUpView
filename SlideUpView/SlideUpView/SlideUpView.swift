@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum CardState {
+fileprivate enum CardState {
     case expanded
     case collapsed
     
@@ -27,7 +27,52 @@ enum AttachedPosition {
     case bottom
 }
 
-final class SlideUpView: UIView, NibLoadable {
+// TODO: DRY
+enum RoundedCorners {
+    case top
+    case bottom
+    case all
+    
+    var maskedCorners: CACornerMask {
+        switch self {
+        case .top:
+            return .topCorners
+        case .bottom:
+            return .bottomCorners
+        case .all:
+            return .allCorners
+        }
+    }
+    
+    var rectCorners: UIRectCorner {
+        switch self {
+        case .top:
+            return .topCorners
+        case .bottom:
+            return .bottomCorners
+        case .all:
+            return .allCorners
+        }
+    }
+    
+}
+
+protocol SlideUpViewInterface: AnyObject {
+    var minimumMultiplierForCollapse: CGFloat { get set }
+    var minimumMultiptierForExpande: CGFloat { get set }
+    
+    var notHidenAreaHeight: CGFloat { get set }
+    
+    var roundedCorners: RoundedCorners { get set }
+    var cornerRadius: CGFloat { get set }
+    
+    var animationDuration: TimeInterval { get set }
+    
+    func configure(screenCoveringPercentage: CGFloat)
+    func attachMeToThe(position: AttachedPosition)
+}
+
+final class SlideUpView: UIView, SlideUpViewInterface, NibLoadable {
     
     // MARK: - IBOutlets
     
@@ -42,11 +87,22 @@ final class SlideUpView: UIView, NibLoadable {
     
     var notHidenAreaHeight: CGFloat = 60
     
-    /// Can be changed (for example: [.bottomLeft, .bottomRight])
-    var roundedCorners: UIRectCorner = [.topRight]
-    var cornerRadius: CGFloat = 60
+    var roundedCorners: RoundedCorners = .top {
+        didSet {
+            roundCorners()
+        }
+    }
+    var cornerRadius: CGFloat = 60 {
+        didSet {
+            roundCorners()
+        }
+    }
     
     var animationDuration: TimeInterval = 0.6
+    
+    var settings: SlideUpViewInterface {
+        return self as SlideUpViewInterface
+    }
     
     // MARK: - Private stuff
     
@@ -84,48 +140,28 @@ final class SlideUpView: UIView, NibLoadable {
         return slideUpViewHeight - notHidenAreaHeight
     }
     
-    // MARK: - Init and configuring
+    // MARK: - Configuration
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        commonInit()
-    }
-    
-    private func commonInit() {
-        configureXib()
         configureView()
+        addGestures()
     }
 
-    private func configureXib() {
-//        Bundle.main.loadNibNamed(String(describing: type(of: self)),
-//                                 owner: self,
-//                                 options: nil)
-//        addSubview(contentView)
-        
-       // contentView.translatesAutoresizingMaskIntoConstraints = false
-        self.translatesAutoresizingMaskIntoConstraints = false
-        superview?.translatesAutoresizingMaskIntoConstraints = false
-        
-//        NSLayoutConstraint.activate([
-//            contentView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-//            contentView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-//            trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-//            bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-//        ])
+    private func configureView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        clipsToBounds = true
+        roundCorners()
     }
     
-    private func configureView() {
-        clipsToBounds = true
-        
-        layer.cornerRadius = cornerRadius
+    private func roundCorners() {
         if #available(iOS 11.0, *) {
-            
-            layer.maskedCorners = roundedCorners.maskCorners.
+            layer.cornerRadius = cornerRadius
+            layer.maskedCorners = roundedCorners.maskedCorners
         } else {
-            roundCorners(corners: roundedCorners, radius: cornerRadius)
+            roundCorners(corners: roundedCorners.rectCorners,
+                         radius: cornerRadius)
         }
-
-        addGestures()
     }
     
     private func addGestures() {
@@ -145,16 +181,17 @@ final class SlideUpView: UIView, NibLoadable {
         
         slideUpViewHeight = superView.frame.height * screenCoveringPercentage / 100
     }
-    
+
     func attachMeToThe(position: AttachedPosition) {
         guard let superView = superview else { return }
         
-        var attachedTo: NSLayoutYAxisAnchor!
-        switch position {
-        case .top:
-            attachedTo = superView.topAnchor
-        case .bottom:
-            attachedTo = superView.bottomAnchor
+        let attachedTo: NSLayoutYAxisAnchor = resultOf {
+            switch position {
+            case .top:
+                return superView.topAnchor
+            case .bottom:
+                return superView.bottomAnchor
+            }
         }
         
         let bottomConstraint = bottomAnchor.constraint(equalTo: attachedTo, constant: 0)
@@ -171,7 +208,7 @@ final class SlideUpView: UIView, NibLoadable {
     
     //////
     @objc
-    func handleCardTap(recognzier: UITapGestureRecognizer) {
+    private func handleCardTap(recognzier: UITapGestureRecognizer) {
         switch recognzier.state {
         case .ended:
             animateTransitionIfNeeded(state: nextStateForTapped, duration: animationDuration)
@@ -181,7 +218,7 @@ final class SlideUpView: UIView, NibLoadable {
     }
     
     @objc
-    func handleCardPan(recognizer: UIPanGestureRecognizer) {
+    private func handleCardPan(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .changed:
             let translation = recognizer.translation(in: handleArea)
@@ -196,7 +233,7 @@ final class SlideUpView: UIView, NibLoadable {
         }
     }
     
-    func animateTransitionIfNeeded(state: CardState, duration: TimeInterval) {
+    private func animateTransitionIfNeeded(state: CardState, duration: TimeInterval) {
         guard runningAnimation == nil else { return }
         
         handleArea.isUserInteractionEnabled = false
@@ -222,7 +259,7 @@ final class SlideUpView: UIView, NibLoadable {
         runningAnimation = heightAnimator
     }
     
-    func changeHeightConstraint(by multiplier: CGFloat) {
+    private func changeHeightConstraint(by multiplier: CGFloat) {
         guard CGFloat(0)...CGFloat(1) ~= multiplier else {
             print("warning negative value!")
             return
@@ -233,7 +270,7 @@ final class SlideUpView: UIView, NibLoadable {
         slideUpViewHeightConstraint.constant = isCardVisible ? moveDownValue : moveUpValue
     }
     
-    func calculateAnimationDuration(for nextState: CardState) -> TimeInterval {
+    private func calculateAnimationDuration(for nextState: CardState) -> TimeInterval {
         let standartAnimationDuration: TimeInterval = 0.6
         
         let movedAreaHeight = slideUpViewHeight - handleArea.frame.height

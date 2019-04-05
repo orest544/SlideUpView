@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		04777B4C2253501D000D8E51 /* UIView+LoadFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04777B4B2253501D000D8E51 /* UIView+LoadFromNib.swift */; };
+		048DB73B2255FA1C00B0A737 /* CACornerMask+Corners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048DB73A2255FA1C00B0A737 /* CACornerMask+Corners.swift */; };
+		048DB73D2255FCD100B0A737 /* UIRectCorner+Corners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048DB73C2255FCD100B0A737 /* UIRectCorner+Corners.swift */; };
+		048DB73F22563B9600B0A737 /* HelpfulMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048DB73E22563B9500B0A737 /* HelpfulMethods.swift */; };
 		04AA3764224BFEDE00FEF6FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA3763224BFEDE00FEF6FD /* AppDelegate.swift */; };
 		04AA3766224BFEDE00FEF6FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA3765224BFEDE00FEF6FD /* ViewController.swift */; };
 		04AA3769224BFEDE00FEF6FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AA3767224BFEDE00FEF6FD /* Main.storyboard */; };
@@ -17,11 +20,13 @@
 		04AA377D224BFFFA00FEF6FD /* SlideUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AA377C224BFFFA00FEF6FD /* SlideUpView.xib */; };
 		04AA377F224C000C00FEF6FD /* SlideUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA377E224C000C00FEF6FD /* SlideUpView.swift */; };
 		04AE3D91224D1FAF00E68805 /* UIView+RoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE3D90224D1FAF00E68805 /* UIView+RoundCorners.swift */; };
-		04EED1C22253A12800850336 /* UIRectCorner+CornerMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EED1C12253A12800850336 /* UIRectCorner+CornerMask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04777B4B2253501D000D8E51 /* UIView+LoadFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LoadFromNib.swift"; sourceTree = "<group>"; };
+		048DB73A2255FA1C00B0A737 /* CACornerMask+Corners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CACornerMask+Corners.swift"; sourceTree = "<group>"; };
+		048DB73C2255FCD100B0A737 /* UIRectCorner+Corners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRectCorner+Corners.swift"; sourceTree = "<group>"; };
+		048DB73E22563B9500B0A737 /* HelpfulMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpfulMethods.swift; sourceTree = "<group>"; };
 		04AA3760224BFEDE00FEF6FD /* SlideUpView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideUpView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04AA3763224BFEDE00FEF6FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04AA3765224BFEDE00FEF6FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,7 +38,6 @@
 		04AA377C224BFFFA00FEF6FD /* SlideUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideUpView.xib; sourceTree = "<group>"; };
 		04AA377E224C000C00FEF6FD /* SlideUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideUpView.swift; sourceTree = "<group>"; };
 		04AE3D90224D1FAF00E68805 /* UIView+RoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundCorners.swift"; sourceTree = "<group>"; };
-		04EED1C12253A12800850336 /* UIRectCorner+CornerMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRectCorner+CornerMask.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				04AA3763224BFEDE00FEF6FD /* AppDelegate.swift */,
+				048DB73E22563B9500B0A737 /* HelpfulMethods.swift */,
 				04EED1C02253A01600850336 /* Extensions */,
 				04EED1BF2253A00400850336 /* SlideUpView */,
 				04AA3765224BFEDE00FEF6FD /* ViewController.swift */,
@@ -93,7 +98,8 @@
 			children = (
 				04AE3D90224D1FAF00E68805 /* UIView+RoundCorners.swift */,
 				04777B4B2253501D000D8E51 /* UIView+LoadFromNib.swift */,
-				04EED1C12253A12800850336 /* UIRectCorner+CornerMask.swift */,
+				048DB73A2255FA1C00B0A737 /* CACornerMask+Corners.swift */,
+				048DB73C2255FCD100B0A737 /* UIRectCorner+Corners.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -174,7 +180,9 @@
 				04AA377F224C000C00FEF6FD /* SlideUpView.swift in Sources */,
 				04AE3D91224D1FAF00E68805 /* UIView+RoundCorners.swift in Sources */,
 				04AA3766224BFEDE00FEF6FD /* ViewController.swift in Sources */,
-				04EED1C22253A12800850336 /* UIRectCorner+CornerMask.swift in Sources */,
+				048DB73F22563B9600B0A737 /* HelpfulMethods.swift in Sources */,
+				048DB73B2255FA1C00B0A737 /* CACornerMask+Corners.swift in Sources */,
+				048DB73D2255FCD100B0A737 /* UIRectCorner+Corners.swift in Sources */,
 				04AA3764224BFEDE00FEF6FD /* AppDelegate.swift in Sources */,
 				04777B4C2253501D000D8E51 /* UIView+LoadFromNib.swift in Sources */,
 			);

@@ -7,25 +7,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
     @IBOutlet weak var testView: UIView!
     @IBOutlet weak var testViewTrailingConstraint: NSLayoutConstraint!
 
-    var slideUpView: SlideUpView!
-
+    lazy private var slideUpView = {
+        return SlideUpView.loadFromNib(owner: self)
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSlideUpView()
     }
-
-    private func setupSlideUpView() {
-        testView.translatesAutoresizingMaskIntoConstraints = false
-        slideUpView = SlideUpView.loadFromNib(owner: self)
     
-        //testView.addSubview(slideUpView)
+    private func setupSlideUpView() {
         testView.addSubview(slideUpView)
-        slideUpView.configure(screenCoveringPercentage: 70)
+        slideUpView.configure(screenCoveringPercentage: 80)
         slideUpView.attachMeToThe(position: .bottom)
     }
 
@@ -33,7 +31,6 @@ class ViewController: UIViewController {
 
 extension ViewController {
     @IBAction func testButton(_ sender: UIButton) {
-        print("Test tapped")
         testViewTrailingConstraint.constant = 60
     }
 }
